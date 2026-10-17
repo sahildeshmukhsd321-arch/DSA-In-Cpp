@@ -1,0 +1,8 @@
+# Objectives
+1.	To understand the concept of a singly linked list.
+2.	To store contact information dynamically.
+3.	To insert new contacts into the list.
+4.	To search for a contact by name.
+5.	To display all saved contacts.
+6.	To delete a contact from the list.
+7.	To perform contact management efficiently using C++.
