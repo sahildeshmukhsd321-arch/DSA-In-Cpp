@@ -1,0 +1,6 @@
+#Objectives
+
+1. To check whether a binary tree is complete or not.
+2. To identify the first position where the tree violates completeness.
+3. To test binary trees with missing nodes at different levels.
+4. To compare queue-based validation with the array-index method.
