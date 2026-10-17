@@ -1,0 +1,6 @@
+# Problem Statement
+
+To develop a Smart Contact Management System using a singly linked list in C++. The system
+allows users to add, display, search, update, delete, and sort contacts. It also provides
+duplicate phone-number checking, emergency contact marking, and contact counting. Each
+contact stores the name, phone number, email, and address
