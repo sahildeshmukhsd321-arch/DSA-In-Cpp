@@ -1,0 +1,11 @@
+#Modified Algorithm
+
+1. Start.
+2. Create a binary tree with the given nodes.
+3. Traverse the tree level by level using a queue.
+4. Check whether any child is present after a missing child position.
+5. If a violation is found, display the first violating position.
+6. Check completeness using array indices.
+7. Compare the results of both methods.
+8. Display whether the binary tree is complete or not.
+9. Stop.
