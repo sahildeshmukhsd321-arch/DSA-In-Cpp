@@ -25,113 +25,81 @@ bool isComplete(Node *root)
 
     queue<Node*> q;
     q.push(root);
-
     bool gap = false;
-    string firstMissing = "";
 
     while (!q.empty())
     {
         Node *temp = q.front();
         q.pop();
 
-        // Check left child
         if (temp->left != NULL)
         {
             if (gap)
             {
-                cout << "First violation: "
-                     << firstMissing << endl;
-                cout << "Tree is NOT complete." << endl;
+                cout << "First violation: left child of node "
+                     << temp->data << endl;
                 return false;
             }
             q.push(temp->left);
         }
         else
         {
-            if (!gap)
-            {
-                gap = true;
-                firstMissing =
-                    "Left child of node " +
-                    to_string(temp->data);
-            }
+            gap = true;
         }
 
-        // Check right child
         if (temp->right != NULL)
         {
             if (gap)
             {
-                cout << "First violation: "
-                     << firstMissing << endl;
-                cout << "Tree is NOT complete." << endl;
+                cout << "First violation: right child of node "
+                     << temp->data << endl;
                 return false;
             }
             q.push(temp->right);
         }
         else
         {
-            if (!gap)
-            {
-                gap = true;
-                firstMissing =
-                    "Right child of node " +
-                    to_string(temp->data);
-            }
+            gap = true;
         }
     }
 
-    cout << "Tree is complete." << endl;
     return true;
 }
 
-// Store nodes at their array-index positions
-void storeIndices(Node *root, int index,
-                  vector<Node*> &arr)
-{
-    if (root == NULL)
-        return;
-
-    if (index >= (int)arr.size())
-        arr.resize(index + 1, NULL);
-
-    arr[index] = root;
-
-    storeIndices(root->left, 2 * index + 1, arr);
-    storeIndices(root->right, 2 * index + 2, arr);
-}
-
-// Array-index completeness check
+// Array-index method using a queue
+// This avoids allocating a huge array for sparse trees.
 bool arrayCheck(Node *root)
 {
     if (root == NULL)
         return true;
 
-    vector<Node*> arr;
-    storeIndices(root, 0, arr);
+    queue<pair<Node*, long long> > q;
+    q.push(make_pair(root, 0));
 
-    bool gap = false;
+    long long expected = 0;
 
-    for (int i = 0; i < (int)arr.size(); i++)
+    while (!q.empty())
     {
-        if (arr[i] == NULL)
+        Node *temp = q.front().first;
+        long long index = q.front().second;
+        q.pop();
+
+        if (index != expected)
         {
-            if (!gap)
-            {
-                gap = true;
-                cout << "First empty array index: "
-                     << i << endl;
-            }
-        }
-        else if (gap)
-        {
-            cout << "Array-index result: "
-                 << "NOT complete." << endl;
+            cout << "First violation: missing array index "
+                 << expected << endl;
             return false;
         }
+
+        expected++;
+
+        if (temp->left != NULL)
+            q.push(make_pair(temp->left, 2 * index + 1));
+
+        if (temp->right != NULL)
+            q.push(make_pair(temp->right, 2 * index + 2));
     }
 
-    cout << "Array-index result: Complete." << endl;
     return true;
 }
 
@@ -142,7 +110,7 @@ void testTree(int choice)
 
     if (choice == 1)
     {
-        // Complete tree
+        // Complete binary tree
         root->left = new Node(2);
         root->right = new Node(3);
         root->left->left = new Node(4);
@@ -150,14 +118,14 @@ void testTree(int choice)
     }
     else if (choice == 2)
     {
-        // Missing left child, but right child exists
+        // Missing left child of node 2, but right child exists
         root->left = new Node(2);
         root->right = new Node(3);
         root->left->right = new Node(5);
     }
     else if (choice == 3)
     {
-        // Missing node at a lower level
+        // Missing position at a lower level
         root->left = new Node(2);
         root->right = new Node(3);
         root->left->left = new Node(4);
@@ -166,17 +134,27 @@ void testTree(int choice)
 
     cout << "\n--- Test Tree " << choice << " ---" << endl;
 
-    cout << "Queue-based check:" << endl;
+    cout << "Queue-based check: ";
     bool queueResult = isComplete(root);
 
-    cout << "\nArray-index check:" << endl;
-    bool arrayResult = arrayCheck(root);
+    if (queueResult)
+        cout << "Complete" << endl;
+    else
+        cout << "Not complete" << endl;
 
-    cout << "\nComparison: ";
-    if (queueResult == arrayResult)
+    cout << "Array-index check: ";
+    bool indexResult = arrayCheck(root);
+
+    if (indexResult)
+        cout << "Complete" << endl;
+    else
+        cout << "Not complete" << endl;
+
+    cout << "Comparison: ";
+    if (queueResult == indexResult)
         cout << "Both methods agree." << endl;
     else
-        cout << "Results do not match." << endl;
+        cout << "Results differ." << endl;
 }
 
 int main()
@@ -189,3 +167,4 @@ int main()
 
     return 0;
 }
+
