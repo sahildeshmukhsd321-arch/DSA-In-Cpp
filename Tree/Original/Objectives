@@ -1,0 +1,6 @@
+# Objectives
+
+1. To understand the concept of a complete binary tree.
+2. To create a binary tree using C++.
+3. To check whether the given binary tree is complete or not.
+4. To use a queue for level-order traversal of the binary tree.
