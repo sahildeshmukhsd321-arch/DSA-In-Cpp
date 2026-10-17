@@ -1,0 +1,11 @@
+#Algorithm
+
+1. Start.
+2. Create a binary tree.
+3. Insert the root node into a queue.
+4. Remove a node from the queue and check its left and right children.
+5. If a missing child is found, set a flag to indicate that no further child nodes should exist.
+6. If a child is found after the flag is set, the tree is not complete.
+7. Otherwise, insert the existing child nodes into the queue.
+8. If all nodes satisfy the condition, display that the tree is complete.
+9. Stop.
