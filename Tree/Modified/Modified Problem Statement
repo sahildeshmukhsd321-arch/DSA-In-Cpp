@@ -1,0 +1,5 @@
+#Modified Problem Statement
+
+Write a C++ program to determine whether a given binary tree is a Complete Binary Tree (CBT).
+The program should display the first position that violates the completeness property,
+test trees with missing nodes at different levels, and compare the result with a completeness check using array indices.
