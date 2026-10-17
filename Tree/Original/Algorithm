@@ -1,0 +1,5 @@
+#Problem Statement
+
+Write a C++ program to determine whether a given binary tree is a Complete Binary Tree (CBT).
+A complete binary tree is a binary tree in which all levels are completely filled except possibly the last level,
+and the last level has all nodes filled from left to right.
