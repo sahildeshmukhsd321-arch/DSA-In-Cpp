@@ -1,0 +1,10 @@
+#Objectives
+
+1. To implement a singly linked list using C++.
+2. To store contact information dynamically.
+3. To add, display, search, update, and delete contacts.
+4. To sort contacts alphabetically by name.
+5. To prevent duplicate phone numbers.
+6. To mark important contacts as emergency contacts.
+7. To count the total number of contacts.
+8. To understand dynamic memory allocation and linked-list operations
