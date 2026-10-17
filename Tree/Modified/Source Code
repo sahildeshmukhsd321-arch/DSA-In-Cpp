@@ -1,0 +1,191 @@
+
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <string>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *left, *right;
+
+    Node(int value)
+    {
+        data = value;
+        left = right = NULL;
+    }
+};
+
+// Queue-based completeness check
+bool isComplete(Node *root)
+{
+    if (root == NULL)
+        return true;
+
+    queue<Node*> q;
+    q.push(root);
+
+    bool gap = false;
+    string firstMissing = "";
+
+    while (!q.empty())
+    {
+        Node *temp = q.front();
+        q.pop();
+
+        // Check left child
+        if (temp->left != NULL)
+        {
+            if (gap)
+            {
+                cout << "First violation: "
+                     << firstMissing << endl;
+                cout << "Tree is NOT complete." << endl;
+                return false;
+            }
+            q.push(temp->left);
+        }
+        else
+        {
+            if (!gap)
+            {
+                gap = true;
+                firstMissing =
+                    "Left child of node " +
+                    to_string(temp->data);
+            }
+        }
+
+        // Check right child
+        if (temp->right != NULL)
+        {
+            if (gap)
+            {
+                cout << "First violation: "
+                     << firstMissing << endl;
+                cout << "Tree is NOT complete." << endl;
+                return false;
+            }
+            q.push(temp->right);
+        }
+        else
+        {
+            if (!gap)
+            {
+                gap = true;
+                firstMissing =
+                    "Right child of node " +
+                    to_string(temp->data);
+            }
+        }
+    }
+
+    cout << "Tree is complete." << endl;
+    return true;
+}
+
+// Store nodes at their array-index positions
+void storeIndices(Node *root, int index,
+                  vector<Node*> &arr)
+{
+    if (root == NULL)
+        return;
+
+    if (index >= (int)arr.size())
+        arr.resize(index + 1, NULL);
+
+    arr[index] = root;
+
+    storeIndices(root->left, 2 * index + 1, arr);
+    storeIndices(root->right, 2 * index + 2, arr);
+}
+
+// Array-index completeness check
+bool arrayCheck(Node *root)
+{
+    if (root == NULL)
+        return true;
+
+    vector<Node*> arr;
+    storeIndices(root, 0, arr);
+
+    bool gap = false;
+
+    for (int i = 0; i < (int)arr.size(); i++)
+    {
+        if (arr[i] == NULL)
+        {
+            if (!gap)
+            {
+                gap = true;
+                cout << "First empty array index: "
+                     << i << endl;
+            }
+        }
+        else if (gap)
+        {
+            cout << "Array-index result: "
+                 << "NOT complete." << endl;
+            return false;
+        }
+    }
+
+    cout << "Array-index result: Complete." << endl;
+    return true;
+}
+
+// Test different binary trees
+void testTree(int choice)
+{
+    Node *root = new Node(1);
+
+    if (choice == 1)
+    {
+        // Complete tree
+        root->left = new Node(2);
+        root->right = new Node(3);
+        root->left->left = new Node(4);
+        root->left->right = new Node(5);
+    }
+    else if (choice == 2)
+    {
+        // Missing left child, but right child exists
+        root->left = new Node(2);
+        root->right = new Node(3);
+        root->left->right = new Node(5);
+    }
+    else if (choice == 3)
+    {
+        // Missing node at a lower level
+        root->left = new Node(2);
+        root->right = new Node(3);
+        root->left->left = new Node(4);
+        root->right->right = new Node(7);
+    }
+
+    cout << "\n--- Test Tree " << choice << " ---" << endl;
+
+    cout << "Queue-based check:" << endl;
+    bool queueResult = isComplete(root);
+
+    cout << "\nArray-index check:" << endl;
+    bool arrayResult = arrayCheck(root);
+
+    cout << "\nComparison: ";
+    if (queueResult == arrayResult)
+        cout << "Both methods agree." << endl;
+    else
+        cout << "Results do not match." << endl;
+}
+
+int main()
+{
+    cout << "COMPLETE BINARY TREE VALIDATION" << endl;
+
+    testTree(1);
+    testTree(2);
+    testTree(3);
+
+    return 0;
+}
