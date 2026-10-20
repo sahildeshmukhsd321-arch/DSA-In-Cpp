@@ -1,1 +1,21 @@
+#Algorithm
+
+1.	Start the program.
+2.	Define a node containing the contact name, phone number, address, and pointer to the next node.
+3.	Initialize the head pointer to NULL.
+4.	Display the menu:
+o	Add Contact
+o	Display Contacts
+o	Search Contact
+o	Delete Contact
+o	Exit
+5.	Accept the user's choice.
+6.	Perform the selected operation:
+o	Add: Create a new node and insert it into the list.
+o	Display: Traverse the list and display all contacts.
+o	Search: Find a contact using its name.
+o	Delete: Find and remove the specified contact.
+o	Exit: Terminate the program.
+7.	Repeat the menu until the user selects Exit.
+8.	Stop.
 
