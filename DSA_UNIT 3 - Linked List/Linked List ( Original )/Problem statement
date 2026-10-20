@@ -1,1 +1,6 @@
+#Problem Statement
 
+To develop a Contact Management System using a singly linked list in C++.
+The system allows users to add, display, search, and delete contacts. 
+Each contact contains a name, phone number, and address.
+A singly linked list is used to store contact details dynamically.
