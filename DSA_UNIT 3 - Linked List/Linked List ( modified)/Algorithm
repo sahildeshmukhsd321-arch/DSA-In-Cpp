@@ -1,1 +1,29 @@
+#Algorithm
 
+1. Start the program.
+2. Define a node containing name, phone number, email, address, emergency status,
+and a pointer to the next node.
+3. Initialize the head pointer to NULL.
+4. Display the menu:
+o Add Contact
+o Display Contacts
+o Search Contact
+o Update Contact
+o Delete Contact
+o Sort Contacts
+o Mark Emergency Contact
+o Count Contacts
+o Exit
+5. Accept the user's choice.
+6. Perform the selected operation:
+o Add: Check for duplicate phone numbers and insert a new node.
+o Display: Traverse the linked list and display all contacts.
+o Search: Find a contact by name or phone number.
+o Update: Modify the selected contact's details.
+o Delete: Remove the selected contact from the list.
+o Sort: Arrange contacts alphabetically by name.
+o Emergency: Mark a contact as an emergency contact.
+o Count: Count and display the total contacts.
+7. Repeat the menu until the user selects Exit.
+8. Release the allocated memory.
+9. Stop the program.
