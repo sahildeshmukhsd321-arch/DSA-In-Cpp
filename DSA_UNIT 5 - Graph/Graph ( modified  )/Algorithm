@@ -1,0 +1,13 @@
+Algorithm:
+
+1. Start.
+2. Read the number of webpages and their names.
+3. Read the hyperlinks and store each as a directed edge in the adjacency list.
+4. Display the webpages with their hyperlinks.
+5. Display the menu and read the choice.
+6. Read the starting page and mark all pages unvisited.
+7. For DFS, visit the page, store it in order, and recursively visit each unvisited linked page.
+8. Display the visitation order, reached pages, and unvisited pages.
+9. For count, display the number of reachable pages from the DFS result.
+10. For BFS, use a queue to visit pages level by level and display each level.
+11. Repeat the menu until Exit, then stop.
