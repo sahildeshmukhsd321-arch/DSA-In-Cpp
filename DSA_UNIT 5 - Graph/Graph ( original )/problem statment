@@ -1,0 +1,6 @@
+ Problem Statement
+
+- Develop a C++ program to represent webpages as vertices and hyperlinks as directed edges.
+- Apply DFS from a selected webpage and display the visitation order.
+- Display the pages reached from the starting page.
+- Identify pages not visited during the traversal.
