@@ -1,1 +1,13 @@
+ Algorithm
 
+1. Start.
+2. Read the number of webpages and their names.
+3. Read the number of hyperlinks.
+4. For each hyperlink, read (from, to) and add a directed edge from → to in the adjacency list.
+5. Display the webpages with their hyperlinks.
+6. Read the starting page.
+7. Mark all pages as unvisited.
+8. Call DFS(start): mark the page visited and store it in the visitation order.
+9. For each unvisited page linked from the current page, call DFS recursively.
+10. Display the visitation order, the pages reached from the start, and the pages with visited = false as not visited.
+11. Stop.
