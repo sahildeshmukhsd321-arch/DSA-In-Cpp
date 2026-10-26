@@ -1,1 +1,4 @@
-
+Problem Statement:
+Develop a C++ program modeling webpages as vertices and hyperlinks as directed edges.
+Apply DFS from a chosen page, showing visitation order, reachable pages, and unvisited pages.
+Modify it to accept a different starting vertex and count reachable vertices or display BFS levels.
